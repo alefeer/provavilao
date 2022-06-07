@@ -1,6 +1,6 @@
 import { Router } from "express"
 
-import {InserirVilao} from "../Repository/VilaoRepository.js"
+import {InserirVilao, listartodososviloes} from "../Repository/VilaoRepository.js"
 const server = Router();
 
 server.post ('/vilao', async (req, resp) => {
@@ -8,10 +8,25 @@ server.post ('/vilao', async (req, resp) => {
         const addvilao = req.body
         const resposta = await InserirVilao (addvilao);
 
-        resposta.status (204).send (resposta);
+        resp.status(200).send(resposta);
     } catch (err) {
-        resp.status(404).send 
+        resp.status(404).send({
+            erro: err.message
+        }) 
     }
 }) 
+
+
+
+server.get ('/vilao', async (req, resp) =>{
+    try {
+        const resposta = await listartodososviloes();
+        resp.send(resposta);
+    } catch(err) {
+        resp.status(404).send ({
+            erro: err.message
+        })
+    }
+})
 
 export default server;
