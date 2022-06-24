@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Inserirvilao } from '../../api/vilao.js'
+import { Inserirvilao } from '../../api/vilao'
 import { toast } from 'react-toastify'
 
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ export default function Index() {
     const [nome, setNome] = useState('');
     const [id, setId] = useState(0);
     
-    const [ds, setMaldades] = useSate ('');
+    const [ds, setMaldades] = useState ('');
     const [bt, setPoderes] = useState ('')
 
     
