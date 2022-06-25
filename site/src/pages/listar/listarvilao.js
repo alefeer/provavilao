@@ -1,25 +1,25 @@
 import { listartodososviloes } from "../../api/vilao";
 import './listarvilao.scss'
-import { useEffect, useState } from 'react'
+import { useEffect, useState} from 'react'
 
 
 
 export default function Index() { 
-    const [vilao, setVilao] = useState([]);
-    
-    async function carregarTodosViloes() {
-        const resp = await listartodososviloes();
-        setVilao(resp);
+    const [vilao, setVilao] = useState([])
+
+    async function carregarTodosViloes(){
+        const resp = await listartodososviloes()
+        setVilao(resp)
     }
 
     useEffect(() => {
-        carregarTodosViloes();
-    }, [])
+        carregarTodosViloes()
+    },[])
 
 
-    return ( 
-        <main className='pageConsultar'>
-            <table>
+   return ( 
+        <main className='page-consultar'>
+           <table>
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -34,12 +34,12 @@ export default function Index() {
                         <tr>
                             <td> {item.id} </td>
                             <td> {item.nome} </td>
-                            <td> {item.maldades}</td>
-                            <td> {item.poderes}</td>
+                            <td> {item.maldades} </td>
+                            <td> {item.poderes} </td>
                         </tr>
-                    )}
+                        )}
                 </tbody>
-            </table>    
-       </main>  
+            </table> 
+       </main>
     );
 }

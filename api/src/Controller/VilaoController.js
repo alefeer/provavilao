@@ -6,8 +6,20 @@ const server = Router();
 server.post ('/vilao', async (req, resp) => {
     try {
         const addvilao = req.body
-        const resposta = await InserirVilao (addvilao);
 
+        if(! addvilao.nome) {
+            throw new Error ('Nome do Vilão é Obrigatório') 
+        }
+
+        if( ! addvilao.maldades){
+            throw new Error ('Maldade do Vilão é Obrigatória')
+        }
+
+        if( ! addvilao.poderes) {
+            throw new Error ('Poderes do Vilão são Obrigatórios')
+        }
+
+        const resposta = await InserirVilao (addvilao);
         resp.status(200).send(resposta);
     } catch (err) {
         resp.status(404).send({

@@ -1,31 +1,23 @@
 import { useState } from 'react';
-import { Inserirvilao } from '../../api/vilao'
+import { InserirVilao } from '../../api/vilao'
 import { toast } from 'react-toastify'
-
-import { useNavigate } from 'react-router-dom';
+import './inserirvilao.scss'
 
 
 export default function Index() {
-    const navigate = useNavigate();
     const [nome, setNome] = useState('');
     const [id, setId] = useState(0);
-    
-    const [ds, setMaldades] = useState ('');
-    const [bt, setPoderes] = useState ('')
+    const [maldades, setMaldades] = useState ('');
+    const [poderes, setPoderes] = useState (false)
 
     
 
     async function salvarVilao() {
         try {
-            if (id === 0) {
-                const novoVilao = await Inserirvilao(id, nome, maldades, poderes);
+            if (id === 0) {  
+                const novoVilao = await InserirVilao(nome, maldades, poderes);
                 setId(novoVilao.id);
-                setNome(novoVilao.nome);
-                setMaldades(novoVilao.maldades);
-                setPoderes(novoVilao.poderes)
-
-                toast.light('Vilao cadastrado com sucesso!!');
-                navigate('/listarvilao')
+                toast.dark('Vilao cadastrado com sucesso!!');
             }
         } catch (err) {
             if (err.response)
@@ -36,11 +28,12 @@ export default function Index() {
     }
 
     return (
-        <div>
+        <div className='page-cadastro'>
         <h1>Cadastrar vilão</h1>
 
-            <input type='text' placeholder='Nome do Vilao' value={nome} onChange={e => setNome(e.target.value)} />
-            
+            <input type='text' placeholder='Nome do Vilão' value={nome} onChange={e => setNome(e.target.value)} />
+            <input type='text' placeholder='Maldades do Vilão' value={maldades} onChange={e => setMaldades(e.target.value)} />
+            <input type='checkbox' value={poderes} onChange={e => setPoderes(e.target.checked)} />
             <button onClick={salvarVilao}>Cadastrar</button>
         
         </div>

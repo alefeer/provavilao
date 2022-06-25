@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
-import Cadastrar from './pages/cadastrar/inserirvilao'
+import Cadastrar from './pages/cadastrar/Inserirvilao'
 import Listar from './pages/listar/listarvilao'
 import Home from './pages/home.js'
 
